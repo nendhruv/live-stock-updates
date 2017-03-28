@@ -1,7 +1,56 @@
+body{
+	font-family: sans-serif;
+}
+
+
+header{
+    height: 40px;
+    border-bottom: 1px solid #000;
+    margin: 0;
+
+}
+
+
+#stockTable{
+    width: 80%;
+    margin: 5% 0 0 10%;
+   -webkit-transition: opacity .5s ease-in-out;
+   -moz-transition: opacity .5s ease-in-out;
+   -ms-transition: opacity .5s ease-in-out;
+   -o-transition: opacity .5s ease-in-out;
+   transition: opacity .5s ease-in-out;
+
+}
+
+
+.head span{
+	font-size: 1.5em;
+}
+
+#stockTable div{
+	padding: 1.5%;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.stock{
+	background: #efefef;
+	transition: all 0.5s ease;
+	border: 5px solid #fff;
+}
+
+.stock span{
+	margin: 5%;
+}
+
 .positive{
-  background: green;
+  background: rgba(76,153,0,1);
+  color: #fff;
+  transition: all 0.5s ease;
 }
 
 .negative{
-  background: red;
+  color: #fff;
+  background: rgba(255,0,0,0.8);
+  transition: all 0.5s  ease;
 }
