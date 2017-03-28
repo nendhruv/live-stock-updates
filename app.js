@@ -1,58 +1,17 @@
-window.onload = function() {
+var express = require('express'),
+  http = require('http'),
+  app = module.exports = express();
+  server = require('http').createServer(app);
 
-  var stockTable = document.getElementById('stockTable')
-  var stockData = [];
+app.set('port', process.env.PORT || 3000);
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+app.use(express.static('public'));
 
-  var socket = new WebSocket('ws://stocks.mnet.website');
+app.get('/', function(req, res){
+  res.render('index')
+});
 
-
-  socket.onerror = function(error) {
-    console.log('WebSocket Error: ' + error);
-  };
-
-
-  socket.onopen = function(event) {
-    console.log('socket is open')
-  };
-
-
-  var data = {};
-  var company = {}
-  socket.onmessage = function(event) {
-    var message = JSON.parse(event.data);
-    for (var i in message) {
-      company[message[i][0]] = true;
-    }
-    for(i in message){
-      var t = message[i][0]
-      var h = {}
-      h['prev'] = (data[t]==undefined?message[i][1]:data[t].curr) 
-      h['curr'] = message[i][1]
-      data[t]= h;
-    }
-    updateData(data, company)
-  };
-
-
-  function updateData(data, company){
-    var str = ''
-    for (var i in data) {
-      if(company[i]){
-        if(data[i]['curr'] - data[i]['prev'] > 0)
-          str += '<li class="received positive">'+ i +  data[i]['curr'] + '     ' + data[i]['prev']+ '</li>';
-        if(data[i]['curr'] - data[i]['prev'] < 0)
-          str += '<li class="received negative">'+ i +  data[i]['curr'] + '     ' + data[i]['prev']+ '</li>';
-
-      }
-      else{
-        str += '<li class="received">'+ i +  data[i]['curr'] + '     ' + data[i]['prev']+ '</li>';
-      }
-
-    }
-    for (var i in company) {
-      company[i] = false;
-    }
-    stockTable.innerHTML = str;
-  }
-
-};
+server.listen(app.get('port'), function () {
+  console.log('Express server listening on port ' + app.get('port'));
+});

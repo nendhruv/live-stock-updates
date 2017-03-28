@@ -1,0 +1,24 @@
+{
+  "name": "live-stock-updates",
+  "version": "1.0.0",
+  "description": "Live Stock Updates",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nendhruv/live-stock-updates.git"
+  },
+  "author": "nendhruv",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nendhruv/live-stock-updates/issues"
+  },
+  "homepage": "https://github.com/nendhruv/live-stock-updates#readme",
+  "dependencies": {
+    "ejs": "^2.5.5",
+    "express": "^4.14.1"
+  }
+}
